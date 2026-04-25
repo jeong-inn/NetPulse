@@ -297,9 +297,9 @@ def main():
     print(f"\n컬럼 ({len(df.columns)}개):")
     for col in df.columns:
         print(f"  - {col}")
-    print(f"\n측정 유형 분포:")
+    print("\n측정 유형 분포:")
     print(df["measurement_type"].value_counts().to_string())
-    print(f"\n셀 중요도 분포:")
+    print("\n셀 중요도 분포:")
     print(df["cell_priority"].value_counts().sort_index().to_string())
     print(f"\n측정 시간 범위: {df['measurement_time'].min()} ~ {df['measurement_time'].max()}")
 

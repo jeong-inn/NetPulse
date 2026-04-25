@@ -12,24 +12,22 @@ test_pipeline.py — 5G 기지국 장애 탐지 파이프라인 통합 테스트
   - 데이터 품질(DQM) 검증
 """
 
-import sys
 import os
-import numpy as np
-import pandas as pd
+import sys
+
 import pytest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from generate_logs import build_scenarios
-from preprocess import add_rolling_features
 from anomaly_detector import detect_anomalies
-from state_engine import assign_states
-from judge import judge_scenarios
-from validator import load_scenario_specs, validate_against_specs
-from root_cause import analyze_root_causes
-from spc import analyze_spc_by_scenario
 from batch_processor import run_all_batches
 from dq_monitor import run_dq_assessment
+from generate_logs import build_scenarios
+from judge import judge_scenarios
+from preprocess import add_rolling_features
+from root_cause import analyze_root_causes
+from spc import analyze_spc_by_scenario
+from state_engine import assign_states
 
 
 @pytest.fixture(scope="module")

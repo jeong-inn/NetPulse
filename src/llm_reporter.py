@@ -1,5 +1,6 @@
-import os
 import json
+import os
+
 from openai import OpenAI
 
 
@@ -80,7 +81,8 @@ def generate_llm_reports(records, output_path="data/processed/llm_reports.json",
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
         print("[LLM] OPENAI_API_KEY 없음 — fallback report 생성", flush=True)
-        fallback_results = [build_fallback_report(r, "API key not set") for r in (records[:max_reports] if max_reports else records)]
+        record_subset = records[:max_reports] if max_reports else records
+        fallback_results = [build_fallback_report(r, "API key not set") for r in record_subset]
         os.makedirs(os.path.dirname(output_path) if os.path.dirname(output_path) else ".", exist_ok=True)
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(fallback_results, f, ensure_ascii=False, indent=2)

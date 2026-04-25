@@ -14,7 +14,6 @@ def analyze_root_causes(df, judge_df):
 
     for _, jrow in judge_df.iterrows():
         scenario_id = jrow["scenario_id"]
-        g = df[df["scenario_id"] == scenario_id].copy()
 
         reason_text = str(jrow["all_reasons"])
 

@@ -9,7 +9,6 @@ psycopg2가 없으면 skip.
 """
 
 import os
-import pandas as pd
 
 try:
     import psycopg2

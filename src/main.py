@@ -17,9 +17,9 @@ main.py — NetPulse 5G 기지국 장애 탐지 파이프라인 오케스트레�
  11. PostgreSQL 저장                 (db_writer.py)
 """
 
+import logging
 import os
 import sys
-import logging
 from datetime import datetime
 
 import pandas as pd
@@ -28,19 +28,19 @@ import pandas as pd
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(PROJECT_ROOT, "src"))
 
-from preprocess import preprocess_logs
 from anomaly_detector import detect_anomalies, summarize_anomalies
-from state_engine import assign_states, summarize_states, final_state_per_scenario
-from judge import judge_scenarios
-from validator import load_scenario_specs, validate_against_specs
-from root_cause import analyze_root_causes
-from operator_report import build_operator_report, save_llm_prompts
-from llm_reporter import generate_llm_reports
-from policy_engine import summarize_quality
-from spc import analyze_spc_by_scenario
-from dq_monitor import run_dq_assessment
 from batch_processor import run_all_batches
 from db_writer import write_all
+from dq_monitor import run_dq_assessment
+from judge import judge_scenarios
+from llm_reporter import generate_llm_reports
+from operator_report import build_operator_report, save_llm_prompts
+from policy_engine import summarize_quality
+from preprocess import preprocess_logs
+from root_cause import analyze_root_causes
+from spc import analyze_spc_by_scenario
+from state_engine import assign_states, final_state_per_scenario, summarize_states
+from validator import load_scenario_specs, validate_against_specs
 
 # ================================================================
 # 로깅 설정
@@ -55,9 +55,12 @@ logger = logging.getLogger("NetPulse")
 # ================================================================
 # 네트워크 KPI SLA 규격 한계
 # ================================================================
-LATENCY_USL      = 20.0;  LATENCY_LSL      = 3.0    # E2E 지연: 정상 3~20 ms
-JITTER_USL       = 8.0;   JITTER_LSL       = 0.5    # 지터: 정상 0.5~8 ms
-PACKET_LOSS_USL  = 3.0;   PACKET_LOSS_LSL  = 0.0    # 패킷 손실: 정상 0~3 %
+LATENCY_USL = 20.0
+LATENCY_LSL = 3.0  # E2E 지연: 정상 3~20 ms
+JITTER_USL = 8.0
+JITTER_LSL = 0.5  # 지터: 정상 0.5~8 ms
+PACKET_LOSS_USL = 3.0
+PACKET_LOSS_LSL = 0.0  # 패킷 손실: 정상 0~3 %
 
 
 def _path(*parts):
@@ -92,9 +95,9 @@ def main():
 
     df.to_csv(_path("data", "processed", "analyzed_logs_with_states.csv"), index=False)
 
-    anomaly_summary = summarize_anomalies(df)
-    state_summary = summarize_states(df)
-    final_states = final_state_per_scenario(df)
+    _ = summarize_anomalies(df)
+    _ = summarize_states(df)
+    _ = final_state_per_scenario(df)
 
     # =========================================================
     # STAGE 4: 시나리오 최종 판정
@@ -227,7 +230,7 @@ def main():
     spc_display_cols = ["scenario_id", "param", "cpk", "ppk", "rule1_count", "ooc_count", "ucl", "lcl"]
     print(spc_df[spc_display_cols].to_string(index=False))
 
-    print(f"\n[원인 분석]")
+    print("\n[원인 분석]")
     print(root_cause_df.to_string(index=False))
 
     print("\n" + "=" * 70)

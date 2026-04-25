@@ -1,0 +1,19 @@
+[tool.ruff]
+line-length = 130
+target-version = "py310"
+
+[tool.ruff.lint]
+# Ignore rules that conflict with project structure
+ignore = [
+    "E402",  # Module level import not at top of file
+             # (sys.path.insert needed before imports)
+    "I001",  # Import block is un-sorted or un-formatted
+             # (isort conflicts with project structure)
+]
+
+# Select specific rules to enforce
+select = [
+    "F",    # Pyflakes
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+]

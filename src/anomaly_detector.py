@@ -21,7 +21,6 @@ anomaly_flag(0/1)와 anomaly_reason(탐지 사유)을 부여한다.
 """
 
 import numpy as np
-import pandas as pd
 
 
 def detect_anomalies(df):

@@ -1,6 +1,5 @@
 import json
 import os
-import pandas as pd
 
 
 def build_operator_report(judge_df, validation_df, root_cause_df, output_path="data/processed/operator_report.json"):
