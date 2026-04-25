@@ -1,0 +1,11 @@
+scenario_id,primary_cause,secondary_signal,confidence,evidence
+S1,No significant abnormality,none,Low,warning_ratio=0.0 | critical_ratio=0.0 | fail_ratio=0.0
+S10,Persistent network degradation with packet loss (backhaul/transport issue),packet_loss_pct increase,High,latency_high_detected | latency_spike_detected | packet_loss_abnormal | alarm_detected | warning_ratio=0.435 | critical_ratio=0.301 | fail_ratio=0.0
+S2,Persistent latency above SLA threshold (backhaul capacity shortage),latency_ms above threshold,Medium,latency_high_detected | latency_spike_detected | warning_ratio=0.052 | critical_ratio=0.0 | fail_ratio=0.0
+S3,Persistent latency above SLA threshold (backhaul capacity shortage),latency_ms above threshold,Medium,latency_high_detected | latency_spike_detected | warning_ratio=0.749 | critical_ratio=0.0 | fail_ratio=0.0
+S4,Packet loss degradation (transport equipment aging or link quality issue),packet_loss_pct abnormal trend,Medium,packet_loss_abnormal | warning_ratio=0.464 | critical_ratio=0.0 | fail_ratio=0.0
+S5,Packet loss degradation (transport equipment aging or link quality issue),packet_loss_pct abnormal trend,Medium,latency_spike_detected | packet_loss_abnormal | alarm_detected | warning_ratio=0.009 | critical_ratio=0.0 | fail_ratio=0.0
+S6,Cell measurement probe failure (power outage or hardware failure),jitter_ms unavailable,High,measurement_loss_detected | warning_ratio=0.0 | critical_ratio=0.0 | fail_ratio=0.05
+S7,Persistent latency above SLA threshold (backhaul capacity shortage),latency_ms above threshold,Medium,latency_high_detected | latency_spike_detected | warning_ratio=0.047 | critical_ratio=0.0 | fail_ratio=0.0
+S8,Persistent network degradation with packet loss (backhaul/transport issue),packet_loss_pct increase,High,latency_high_detected | latency_spike_detected | packet_loss_abnormal | alarm_detected | interference_event_detected | warning_ratio=0.156 | critical_ratio=0.073 | fail_ratio=0.571
+S9,Persistent latency above SLA threshold (backhaul capacity shortage),latency_ms above threshold,Medium,latency_high_detected | latency_spike_detected | alarm_detected | warning_ratio=0.072 | critical_ratio=0.0 | fail_ratio=0.0

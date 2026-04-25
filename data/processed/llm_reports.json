@@ -1,0 +1,18 @@
+[
+  {
+    "scenario_id": "S1",
+    "summary": "LLM 보고서 생성 실패. 기본 규칙 기반 결과를 사용합니다. (API key not set)",
+    "judgement_basis": [
+      "final_result=PASS",
+      "recommended_action=NO_ACTION",
+      "primary_cause=No significant abnormality"
+    ],
+    "root_cause_hypothesis": "No significant abnormality",
+    "recommended_actions": [
+      "NO_ACTION"
+    ],
+    "field_dispatch_needed": false,
+    "noc_review_needed": false,
+    "operator_note": "API 응답 지연 또는 실패로 인해 fallback report를 생성했습니다."
+  }
+]

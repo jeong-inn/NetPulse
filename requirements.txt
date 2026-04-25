@@ -1,0 +1,10 @@
+pandas
+numpy
+matplotlib
+jinja2
+openai
+psycopg2-binary
+streamlit
+plotly
+pytest
+ruff

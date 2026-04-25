@@ -1,0 +1,11 @@
+scenario_id,description,expected_final_result,actual_final_result,expected_action,actual_action,action_gap,result_match,action_match,keyword_match,ratio_match,validation_score,overall_match,release_gate,mismatch_detail
+S1,정상 운영 — 모든 KPI 정상 범위,PASS,PASS,NO_ACTION,NO_ACTION,0,True,True,True,True,100,True,READY,MATCH
+S10,복합 장애 후 복구 실패 — 현장 출동 필요,FAIL,FAIL,EMERGENCY_HALT,EMERGENCY_HALT,0,True,True,False,False,65,False,BLOCKED,"missing_keywords=['packet_loss_jump'] | ratio_exceeded(w=0.435, c=0.301)"
+S2,지연시간 일시 스파이크 후 자가 회복 (백홀 순간 과부하),PASS_WITH_WARNING,PASS_WITH_WARNING,ENHANCED_MONITORING,ENHANCED_MONITORING,0,True,True,True,True,100,True,MONITORING_REQUIRED,MATCH
+S3,지연시간 지속 상승 — 백홀 용량 부족 의심,FAIL,FAIL,NOC_ESCALATION,NOC_ESCALATION,0,True,True,True,True,100,True,BLOCKED,MATCH
+S4,패킷 손실률 점진 증가 — 전송 장비 노후화,PASS_WITH_WARNING,FAIL,ENHANCED_MONITORING,FIELD_INSPECTION,2,False,False,False,False,0,False,BLOCKED,"expected_result=PASS_WITH_WARNING, actual_result=FAIL | expected_action=ENHANCED_MONITORING, actual_action=FIELD_INSPECTION, gap=2 | missing_keywords=['packet_loss_jump'] | ratio_exceeded(w=0.464, c=0.0)"
+S5,반복 장비 알람 — 간헐적 하드웨어 고장,PASS_WITH_WARNING,FAIL,NO_ACTION,NOC_ESCALATION,4,False,False,True,True,35,False,BLOCKED,"expected_result=PASS_WITH_WARNING, actual_result=FAIL | expected_action=NO_ACTION, actual_action=NOC_ESCALATION, gap=4"
+S6,측정 신호 손실 — 기지국 정전/장비 고장,FAIL,FAIL,CELL_SHUTDOWN,CELL_SHUTDOWN,0,True,True,True,True,100,True,BLOCKED,MATCH
+S7,트래픽 burst 후 자가 회복 (대규모 이벤트),PASS_WITH_WARNING,PASS_WITH_WARNING,ENHANCED_MONITORING,ENHANCED_MONITORING,0,True,True,True,True,100,True,MONITORING_REQUIRED,MATCH
+S8,복합 장애 — 지연+패킷손실+알람+간섭 동시 발생,FAIL,FAIL,EMERGENCY_HALT,EMERGENCY_HALT,0,True,True,True,True,100,True,BLOCKED,MATCH
+S9,장애 감지 후 자동 복구 — 파라미터 최적화 대상,PASS_WITH_WARNING,PASS_WITH_WARNING,PARAMETER_OPTIMIZATION,ENHANCED_MONITORING,-1,True,False,True,True,75,False,REVIEW_REQUIRED,"expected_action=PARAMETER_OPTIMIZATION, actual_action=ENHANCED_MONITORING, gap=-1"

@@ -1,0 +1,232 @@
+[
+  {
+    "scenario_id": "S1",
+    "final_result": "PASS",
+    "final_reason": "정상 범위 유지 — 별도 조치 불필요",
+    "recommended_action": "NO_ACTION",
+    "primary_cause": "No significant abnormality",
+    "secondary_signal": "none",
+    "confidence": "Low",
+    "evidence": "warning_ratio=0.0 | critical_ratio=0.0 | fail_ratio=0.0",
+    "validation": {
+      "expected_final_result": "PASS",
+      "actual_final_result": "PASS",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "overall_match": true,
+      "mismatch_detail": "MATCH"
+    },
+    "metrics": {
+      "warning_ratio": 0.0,
+      "critical_ratio": 0.0,
+      "fail_ratio": 0.0
+    }
+  },
+  {
+    "scenario_id": "S10",
+    "final_result": "FAIL",
+    "final_reason": "지연시간 이상과 패킷 손실이 장시간 지속 — NOC 보고 대상",
+    "recommended_action": "EMERGENCY_HALT",
+    "primary_cause": "Persistent network degradation with packet loss (backhaul/transport issue)",
+    "secondary_signal": "packet_loss_pct increase",
+    "confidence": "High",
+    "evidence": "latency_high_detected | latency_spike_detected | packet_loss_abnormal | alarm_detected | warning_ratio=0.435 | critical_ratio=0.301 | fail_ratio=0.0",
+    "validation": {
+      "expected_final_result": "FAIL",
+      "actual_final_result": "FAIL",
+      "expected_action": "EMERGENCY_HALT",
+      "actual_action": "EMERGENCY_HALT",
+      "overall_match": false,
+      "mismatch_detail": "missing_keywords=['packet_loss_jump'] | ratio_exceeded(w=0.435, c=0.301)"
+    },
+    "metrics": {
+      "warning_ratio": 0.435,
+      "critical_ratio": 0.301,
+      "fail_ratio": 0.0
+    }
+  },
+  {
+    "scenario_id": "S2",
+    "final_result": "PASS_WITH_WARNING",
+    "final_reason": "YELLOW 수준 이상 징후가 있었으나 자가 회복 — 추이 관찰 필요",
+    "recommended_action": "ENHANCED_MONITORING",
+    "primary_cause": "Persistent latency above SLA threshold (backhaul capacity shortage)",
+    "secondary_signal": "latency_ms above threshold",
+    "confidence": "Medium",
+    "evidence": "latency_high_detected | latency_spike_detected | warning_ratio=0.052 | critical_ratio=0.0 | fail_ratio=0.0",
+    "validation": {
+      "expected_final_result": "PASS_WITH_WARNING",
+      "actual_final_result": "PASS_WITH_WARNING",
+      "expected_action": "ENHANCED_MONITORING",
+      "actual_action": "ENHANCED_MONITORING",
+      "overall_match": true,
+      "mismatch_detail": "MATCH"
+    },
+    "metrics": {
+      "warning_ratio": 0.052,
+      "critical_ratio": 0.0,
+      "fail_ratio": 0.0
+    }
+  },
+  {
+    "scenario_id": "S3",
+    "final_result": "FAIL",
+    "final_reason": "지연시간 이상 상태가 장시간 지속 — 백홀 용량 점검 필요",
+    "recommended_action": "NOC_ESCALATION",
+    "primary_cause": "Persistent latency above SLA threshold (backhaul capacity shortage)",
+    "secondary_signal": "latency_ms above threshold",
+    "confidence": "Medium",
+    "evidence": "latency_high_detected | latency_spike_detected | warning_ratio=0.749 | critical_ratio=0.0 | fail_ratio=0.0",
+    "validation": {
+      "expected_final_result": "FAIL",
+      "actual_final_result": "FAIL",
+      "expected_action": "NOC_ESCALATION",
+      "actual_action": "NOC_ESCALATION",
+      "overall_match": true,
+      "mismatch_detail": "MATCH"
+    },
+    "metrics": {
+      "warning_ratio": 0.749,
+      "critical_ratio": 0.0,
+      "fail_ratio": 0.0
+    }
+  },
+  {
+    "scenario_id": "S4",
+    "final_result": "FAIL",
+    "final_reason": "패킷 손실 장시간 지속 — 전송 장비 점검 필요",
+    "recommended_action": "FIELD_INSPECTION",
+    "primary_cause": "Packet loss degradation (transport equipment aging or link quality issue)",
+    "secondary_signal": "packet_loss_pct abnormal trend",
+    "confidence": "Medium",
+    "evidence": "packet_loss_abnormal | warning_ratio=0.464 | critical_ratio=0.0 | fail_ratio=0.0",
+    "validation": {
+      "expected_final_result": "PASS_WITH_WARNING",
+      "actual_final_result": "FAIL",
+      "expected_action": "ENHANCED_MONITORING",
+      "actual_action": "FIELD_INSPECTION",
+      "overall_match": false,
+      "mismatch_detail": "expected_result=PASS_WITH_WARNING, actual_result=FAIL | expected_action=ENHANCED_MONITORING, actual_action=FIELD_INSPECTION, gap=2 | missing_keywords=['packet_loss_jump'] | ratio_exceeded(w=0.464, c=0.0)"
+    },
+    "metrics": {
+      "warning_ratio": 0.464,
+      "critical_ratio": 0.0,
+      "fail_ratio": 0.0
+    }
+  },
+  {
+    "scenario_id": "S5",
+    "final_result": "FAIL",
+    "final_reason": "복합 이상 조합 확인 — 다중 KPI 동시 위반",
+    "recommended_action": "NOC_ESCALATION",
+    "primary_cause": "Packet loss degradation (transport equipment aging or link quality issue)",
+    "secondary_signal": "packet_loss_pct abnormal trend",
+    "confidence": "Medium",
+    "evidence": "latency_spike_detected | packet_loss_abnormal | alarm_detected | warning_ratio=0.009 | critical_ratio=0.0 | fail_ratio=0.0",
+    "validation": {
+      "expected_final_result": "PASS_WITH_WARNING",
+      "actual_final_result": "FAIL",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NOC_ESCALATION",
+      "overall_match": false,
+      "mismatch_detail": "expected_result=PASS_WITH_WARNING, actual_result=FAIL | expected_action=NO_ACTION, actual_action=NOC_ESCALATION, gap=4"
+    },
+    "metrics": {
+      "warning_ratio": 0.009,
+      "critical_ratio": 0.0,
+      "fail_ratio": 0.0
+    }
+  },
+  {
+    "scenario_id": "S6",
+    "final_result": "FAIL",
+    "final_reason": "기지국 측정 신호 손실로 셀 운용 중단 필요",
+    "recommended_action": "CELL_SHUTDOWN",
+    "primary_cause": "Cell measurement probe failure (power outage or hardware failure)",
+    "secondary_signal": "jitter_ms unavailable",
+    "confidence": "High",
+    "evidence": "measurement_loss_detected | warning_ratio=0.0 | critical_ratio=0.0 | fail_ratio=0.05",
+    "validation": {
+      "expected_final_result": "FAIL",
+      "actual_final_result": "FAIL",
+      "expected_action": "CELL_SHUTDOWN",
+      "actual_action": "CELL_SHUTDOWN",
+      "overall_match": true,
+      "mismatch_detail": "MATCH"
+    },
+    "metrics": {
+      "warning_ratio": 0.0,
+      "critical_ratio": 0.0,
+      "fail_ratio": 0.05
+    }
+  },
+  {
+    "scenario_id": "S7",
+    "final_result": "PASS_WITH_WARNING",
+    "final_reason": "YELLOW 수준 이상 징후가 있었으나 자가 회복 — 추이 관찰 필요",
+    "recommended_action": "ENHANCED_MONITORING",
+    "primary_cause": "Persistent latency above SLA threshold (backhaul capacity shortage)",
+    "secondary_signal": "latency_ms above threshold",
+    "confidence": "Medium",
+    "evidence": "latency_high_detected | latency_spike_detected | warning_ratio=0.047 | critical_ratio=0.0 | fail_ratio=0.0",
+    "validation": {
+      "expected_final_result": "PASS_WITH_WARNING",
+      "actual_final_result": "PASS_WITH_WARNING",
+      "expected_action": "ENHANCED_MONITORING",
+      "actual_action": "ENHANCED_MONITORING",
+      "overall_match": true,
+      "mismatch_detail": "MATCH"
+    },
+    "metrics": {
+      "warning_ratio": 0.047,
+      "critical_ratio": 0.0,
+      "fail_ratio": 0.0
+    }
+  },
+  {
+    "scenario_id": "S8",
+    "final_result": "FAIL",
+    "final_reason": "복합 장애(장비알람+외부간섭) 발생으로 긴급 복구 필요",
+    "recommended_action": "EMERGENCY_HALT",
+    "primary_cause": "Persistent network degradation with packet loss (backhaul/transport issue)",
+    "secondary_signal": "packet_loss_pct increase",
+    "confidence": "High",
+    "evidence": "latency_high_detected | latency_spike_detected | packet_loss_abnormal | alarm_detected | interference_event_detected | warning_ratio=0.156 | critical_ratio=0.073 | fail_ratio=0.571",
+    "validation": {
+      "expected_final_result": "FAIL",
+      "actual_final_result": "FAIL",
+      "expected_action": "EMERGENCY_HALT",
+      "actual_action": "EMERGENCY_HALT",
+      "overall_match": true,
+      "mismatch_detail": "MATCH"
+    },
+    "metrics": {
+      "warning_ratio": 0.156,
+      "critical_ratio": 0.073,
+      "fail_ratio": 0.571
+    }
+  },
+  {
+    "scenario_id": "S9",
+    "final_result": "PASS_WITH_WARNING",
+    "final_reason": "YELLOW 수준 이상 징후가 있었으나 자가 회복 — 추이 관찰 필요",
+    "recommended_action": "ENHANCED_MONITORING",
+    "primary_cause": "Persistent latency above SLA threshold (backhaul capacity shortage)",
+    "secondary_signal": "latency_ms above threshold",
+    "confidence": "Medium",
+    "evidence": "latency_high_detected | latency_spike_detected | alarm_detected | warning_ratio=0.072 | critical_ratio=0.0 | fail_ratio=0.0",
+    "validation": {
+      "expected_final_result": "PASS_WITH_WARNING",
+      "actual_final_result": "PASS_WITH_WARNING",
+      "expected_action": "PARAMETER_OPTIMIZATION",
+      "actual_action": "ENHANCED_MONITORING",
+      "overall_match": false,
+      "mismatch_detail": "expected_action=PARAMETER_OPTIMIZATION, actual_action=ENHANCED_MONITORING, gap=-1"
+    },
+    "metrics": {
+      "warning_ratio": 0.072,
+      "critical_ratio": 0.0,
+      "fail_ratio": 0.0
+    }
+  }
+]

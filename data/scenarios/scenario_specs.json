@@ -1,0 +1,92 @@
+[
+    {
+      "scenario_id": "S1",
+      "description": "정상 운영 — 모든 KPI 정상 범위",
+      "expected_final_result": "PASS",
+      "allowed_warning_ratio": 0.00,
+      "allowed_critical_ratio": 0.00,
+      "required_reason_keywords": [],
+      "recommended_action": "NO_ACTION"
+    },
+    {
+      "scenario_id": "S2",
+      "description": "지연시간 일시 스파이크 후 자가 회복 (백홀 순간 과부하)",
+      "expected_final_result": "PASS_WITH_WARNING",
+      "allowed_warning_ratio": 0.10,
+      "allowed_critical_ratio": 0.00,
+      "required_reason_keywords": ["latency_spike"],
+      "recommended_action": "ENHANCED_MONITORING"
+    },
+    {
+      "scenario_id": "S3",
+      "description": "지연시간 지속 상승 — 백홀 용량 부족 의심",
+      "expected_final_result": "FAIL",
+      "allowed_warning_ratio": 0.85,
+      "allowed_critical_ratio": 0.00,
+      "required_reason_keywords": ["latency_high"],
+      "recommended_action": "NOC_ESCALATION"
+    },
+    {
+      "scenario_id": "S4",
+      "description": "패킷 손실률 점진 증가 — 전송 장비 노후화",
+      "expected_final_result": "FAIL",
+      "allowed_warning_ratio": 0.50,
+      "allowed_critical_ratio": 0.00,
+      "required_reason_keywords": ["packet_loss_jump"],
+      "recommended_action": "FIELD_INSPECTION"
+    },
+    {
+      "scenario_id": "S5",
+      "description": "반복 장비 알람 — 간헐적 하드웨어 고장",
+      "expected_final_result": "FAIL",
+      "allowed_warning_ratio": 0.05,
+      "allowed_critical_ratio": 0.00,
+      "required_reason_keywords": ["alarm_detected"],
+      "recommended_action": "NOC_ESCALATION"
+    },
+    {
+      "scenario_id": "S6",
+      "description": "측정 신호 손실 — 기지국 정전/장비 고장",
+      "expected_final_result": "FAIL",
+      "allowed_warning_ratio": 0.00,
+      "allowed_critical_ratio": 0.00,
+      "required_reason_keywords": ["measurement_loss"],
+      "recommended_action": "CELL_SHUTDOWN"
+    },
+    {
+      "scenario_id": "S7",
+      "description": "트래픽 burst 후 자가 회복 (대규모 이벤트)",
+      "expected_final_result": "PASS_WITH_WARNING",
+      "allowed_warning_ratio": 0.05,
+      "allowed_critical_ratio": 0.00,
+      "required_reason_keywords": ["latency_spike"],
+      "recommended_action": "ENHANCED_MONITORING"
+    },
+    {
+      "scenario_id": "S8",
+      "description": "복합 장애 — 지연+패킷손실+알람+간섭 동시 발생",
+      "expected_final_result": "FAIL",
+      "allowed_warning_ratio": 0.80,
+      "allowed_critical_ratio": 0.10,
+      "required_reason_keywords": ["latency_high", "packet_loss_jump", "alarm_detected", "interference_event"],
+      "recommended_action": "EMERGENCY_HALT"
+    },
+    {
+      "scenario_id": "S9",
+      "description": "장애 감지 후 자동 복구 — 파라미터 최적화 대상",
+      "expected_final_result": "PASS_WITH_WARNING",
+      "allowed_warning_ratio": 0.10,
+      "allowed_critical_ratio": 0.01,
+      "required_reason_keywords": ["latency_spike"],
+      "recommended_action": "PARAMETER_OPTIMIZATION"
+    },
+    {
+      "scenario_id": "S10",
+      "description": "복합 장애 후 복구 실패 — 현장 출동 필요",
+      "expected_final_result": "FAIL",
+      "allowed_warning_ratio": 0.70,
+      "allowed_critical_ratio": 0.20,
+      "required_reason_keywords": ["latency_high", "packet_loss_jump", "alarm_detected"],
+      "recommended_action": "EMERGENCY_HALT"
+    }
+  ]
